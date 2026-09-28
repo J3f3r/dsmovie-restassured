@@ -55,34 +55,23 @@ A cobertura de testes foi dividida em duas suítes principais para garantir a va
 
 ### Passo a Passo
 
-1. **Clonar o repositório:**
-   ```bash
-   git clone [https://github.com/J3f3r/dsmovie-restassured.git](https://github.com/J3f3r/dsmovie-restassured.git)
-   
-   **Acessar a pasta do projeto:**
+```bash
+ 1. Clonar o repositório
+   git clone [https://github.com/J3f3r/dsmovie-restassured.git]      (https://github.com/J3f3r/dsmovie-restassured.git)
 
-	* Bash
-	```cd dsmovie-restassured```
-   Executar a suíte completa de testes:
+ 2. Acessar a pasta do projeto
+   cd dsmovie-restassured
 
-   Linux / macOS / Git Bash:
+ 3. Executar a suíte completa de testes (Escolha o comando conforme seu terminal):
 
-   Bash
-   ``./mvnw clean test```
-   
-   Windows (Prompt de Comando - CMD):
+    Opção A: Linux / macOS / Git Bash
+      ./mvnw clean test
 
-   DOS
-   ``mvnw clean test``
-   
-   Windows (PowerShell):
+    Opção B: Windows (Prompt de Comando - CMD)
+      mvnw clean test
 
-   PowerShell
-   ``.\mvnw clean test```
-   
-2. **Executar a aplicação localmente (opcional):**
+    Opção C: Windows (PowerShell)
+      .\mvnw clean test
 
-   Bash
-  ``./mvnw spring-boot:run``
-  
-3. **A aplicação estará acessível em:**  http://localhost:8080.
+ 4. Executar a aplicação localmente (Opcional - Acessível em http://localhost:8080)
+    ./mvnw spring-boot:run
