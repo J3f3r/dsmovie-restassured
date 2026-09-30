@@ -66,13 +66,13 @@ public class MovieControllerRA {
 	@Test
 	public void findAllShouldReturnPagedMoviesWhenMovieTitleParamIsNotEmpty() {
 		given()
-			.get("/movies?name={movieName}", movieName)
+			.get("/movies?title={movieName}", movieName)
 		.then()
 			.statusCode(200)
-			.body("content.count[3]", is(0))
-			.body("content.id[3]", is(4))
-			.body("content.image[3]", equalTo("https://www.themoviedb.org/t/p/w533_and_h300_bestv2/hv7o3VgfsairBoQFAawgaQ4cR1m.jpg"))
-			.body("content.title[3]", equalTo("Matrix Resurrections"));
+			.body("content.count[0]", is(0))
+			.body("content.id[0]", is(4))
+			.body("content.image[0]", equalTo("https://www.themoviedb.org/t/p/w533_and_h300_bestv2/hv7o3VgfsairBoQFAawgaQ4cR1m.jpg"))
+			.body("content.title[0]", equalTo("Matrix Resurrections"));
 	}
 	
 	@Test

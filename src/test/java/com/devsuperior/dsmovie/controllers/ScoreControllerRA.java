@@ -19,7 +19,7 @@ import io.restassured.http.ContentType;
 
 public class ScoreControllerRA {
 
-	private Long existingScoreId, nonExistingScoreId;
+	private Long existingMovieId, nonExistingMovieId;
 	
 	private String clientUsername, clientPassword, adminUsername, adminPassword;
 	private String clientToken, adminToken, invalidToken;
@@ -31,8 +31,8 @@ public class ScoreControllerRA {
 		
 		baseURI = "http://localhost:8080";
 		
-		existingScoreId = 1L;
-		nonExistingScoreId = 100L;
+		existingMovieId = 1L;
+		nonExistingMovieId = 100L;
 		
 		clientUsername = "alex@gmail.com";
 		clientPassword = "123456";
@@ -52,7 +52,7 @@ public class ScoreControllerRA {
 	public void saveScoreShouldReturnNotFoundWhenMovieIdDoesNotExist() throws Exception {
 		
 		// 1. Informa um movieId INEXISTENTE dentro do corpo do JSON
-		putScoreInstance.put("movieId", nonExistingScoreId);
+		putScoreInstance.put("movieId", nonExistingMovieId);
 		putScoreInstance.put("score", 4.0);
 		
 		JSONObject newScore = new JSONObject(putScoreInstance);
@@ -95,9 +95,12 @@ public class ScoreControllerRA {
 	@Test
 	public void saveScoreShouldReturnUnprocessableEntityWhenScoreIsLessThanZero() throws Exception {
 		
-		putScoreInstance.put("score", -1.0);
+		Map<String, Object> invalidScoreInstance = new HashMap<>();
+	    invalidScoreInstance.put("movieId", existingMovieId);
+	    invalidScoreInstance.put("score", -1.0);
+
 		
-		JSONObject newScore = new JSONObject(putScoreInstance);
+		JSONObject newScore = new JSONObject(invalidScoreInstance);
 		
 		given()
 			.header("Content-Type", "application/json")
@@ -111,6 +114,7 @@ public class ScoreControllerRA {
 			.statusCode(422)
 			.body("status", is(422))
 			.body("error", equalTo("Dados inválidos"))
-			.body("errors.message[0]", equalTo("Score should be greater than or equal to zero"));
+			.body("errors[0].message", equalTo("Score should be greater than or equal to zero"))
+			.body("errors[0].fieldName", equalTo("score"));
 	}
 }
